@@ -12,7 +12,7 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
     <link rel="shortcut icon" href="favicon.ico">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>AVS ANF TCO Calculator</title>
+    <title>ANF AVS TCO Calculator</title>
     <style media="screen">
       .required-field::after {
           content: "*";
@@ -373,13 +373,13 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
 
             document.getElementById("avs1_profile").innerText = "AVS-vSAN only - " + profile;
             //document.getElementById("avs2_profile").innerText = "AVS-vSAN with additional capacity";
-            document.getElementById("avs3_profile").innerText = "AVS-vSAN with ANF Premium Tier";
-            document.getElementById("avs4_profile").innerText = "AVS-vSAN with ANF Premium/Standard Tier (Perf optimized)";
-            document.getElementById("avs5_profile").innerText = "AVS-vSAN with ANF Standard Tier Pilot Light cluster";
-            document.getElementById("avs6_profile").innerText = "AVS-vSAN with ANF Standard Tier zero Host Footprint";
-            document.getElementById("avs7_profile").innerText = "AVS-vSAN with ANF Standard";
-            document.getElementById("avs8_profile").innerText = "AVS-vSAN with ANF Ultra";
-            document.getElementById("avs9_profile").innerText = "AVS-vSAN with ANF Ultra/Premium Tier (Perf optimized)";
+            document.getElementById("avs3_profile").innerText = "AVS-vSAN with ANF premium";
+            document.getElementById("avs4_profile").innerText = "AVS-vSAN with ANF premium/standard tier (perf optimized)";
+            document.getElementById("avs5_profile").innerText = "AVS-vSAN with ANF standard tier pilot light cluster";
+            document.getElementById("avs6_profile").innerText = "AVS-vSAN with ANF standard tier zero host footprint";
+            document.getElementById("avs7_profile").innerText = "AVS-vSAN with ANF standard";
+            document.getElementById("avs8_profile").innerText = "AVS-vSAN with ANF ultra";
+            document.getElementById("avs9_profile").innerText = "AVS-vSAN with ANF ultra/premium tier (Perf optimized)";
 
             //document.getElementById("avs1_tcoavs").innerText = "$" + numberWithCommas(Math.round(tcooneyearavs1));
             document.getElementById("avs2_tcoavs").innerText = "$" + numberWithCommas(Math.round(tcooneyearavs2));
@@ -471,7 +471,7 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
             if(tcoopt3 <= 0 || document.getElementById('premiumRadio').checked != true){
               //document.getElementById("anf_premium").classList.add = "d-none";
               document.getElementById("anf_premium").style.display = "none";
-              document.getElementById("output_message_pre").innerText = "There is no TCO benefit by adding ANF Premium volume based on the inputs provided!";
+              document.getElementById("output_message_pre").innerText = "There is no TCO benefit by adding ANF premium volume based on the inputs provided!";
             } else{
               //document.getElementById("anf_premium").classList.remove = "d-none";
               document.getElementById("anf_premium").style.display = "table-row";
@@ -491,7 +491,7 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
             if(tcoopt5 <= 0){
               //document.getElementById("anf_ultra").classList.add = "d-none";
               document.getElementById("anf_dr").style.display = "none";
-              document.getElementById("output_message_std").innerText = "No optimization using ANF DR Tier!";
+              document.getElementById("output_message_std").innerText = "No optimization using ANF standard DR tier!";
             }else{
               //document.getElementById("anf_ultra").classList.remove = "d-none";
               document.getElementById("anf_dr").style.display = "table-row";
@@ -500,7 +500,7 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
             if(tcoopt6 <= 0){
               //document.getElementById("anf_ultra").classList.add = "d-none";
               document.getElementById("anf_dr_zero").style.display = "none";
-              document.getElementById("output_message_std_zero").innerText = "No optimization using ANF Standard Tier zero Host Footprint!";
+              document.getElementById("output_message_std_zero").innerText = "No optimization using ANF standard tier zero host footprint!";
             }else{
               //document.getElementById("anf_ultra").classList.remove = "d-none";
               document.getElementById("anf_dr_zero").style.display = "table-row";
@@ -509,7 +509,7 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
             if(tcoopt7 <= 0 || document.getElementById('standardRadio').checked != true){
               //document.getElementById("anf_standard").classList.add = "d-none";
               document.getElementById("anf_standard").style.display = "none";
-              document.getElementById("output_message_std").innerText = "There is no TCO benefit by adding ANF Standard volume based on the inputs provided!";
+              document.getElementById("output_message_std").innerText = "There is no TCO benefit by adding ANF standard volume based on the inputs provided!";
             }else{
               //document.getElementById("anf_standard").classList.remove = "d-none";
               document.getElementById("anf_standard").style.display = "table-row";
@@ -518,7 +518,7 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
             if(tcoopt8 <= 0 || document.getElementById('ultraRadio').checked != true){
               //document.getElementById("anf_standard").classList.add = "d-none";
               document.getElementById("anf_ultra").style.display = "none";
-              document.getElementById("output_message_ultra_only").innerText = "There is no TCO benefit by adding ANF Ultra volume based on the inputs provided!";
+              document.getElementById("output_message_ultra_only").innerText = "There is no TCO benefit by adding ANF ultra volume based on the inputs provided!";
             }else{
               //document.getElementById("anf_standard").classList.remove = "d-none";
               document.getElementById("anf_ultra").style.display = "table-row";
@@ -551,7 +551,7 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
         <div class="card ml-5 mr-5">
             <div class="card-header">
                 <div class="h5"><img src="anficon.png" class="float-left" height="40"></div>
-                    <div class="float-left"><span class="h5">&nbsp&nbspAzure NetApp Files DataStore TCO Estimator</span></div>
+                    <div class="float-left"><span class="h5">&nbsp&nbspAzure NetApp Files datastore TCO Estimator</span></div>
 
             </div>
             <div class="card-body">
@@ -724,7 +724,7 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
                       <table class='table-bordered table table-sm table-hover w-auto' style='table-layout:fixed;font-size:13px;'>
                         <thead class='thead-light'>
                             <tr>
-                              <th>Profile Driven by</th>
+                              <th>Profile driven by</th>
                               <th>Number of hosts</th>
                             </tr>
                         </thead>
@@ -839,23 +839,23 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
                           <td class="bg-light text-dark" colspan="12"><center>
                             <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="standardRadio" value="standard" onclick="radioCheck('standardRadio','anf_standard')" checked>
-                              <label class="form-check-label" for="standardRadio">ANF Standard</label>
+                              <label class="form-check-label" for="standardRadio">ANF standard</label>
                             </div>
                             <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="premiumRadio" value="premium" onclick="radioCheck('premiumRadio','anf_premium')" checked>
-                              <label class="form-check-label" for="premiumRadio">ANF Premium</label>
+                              <label class="form-check-label" for="premiumRadio">ANF premium</label>
                             </div>
                             <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="ultraRadio" value="ultra" onclick="radioCheck('ultraRadio','anf_ultra')" checked>
-                              <label class="form-check-label" for="ultraRadio">ANF Ultra</label>
+                              <label class="form-check-label" for="ultraRadio">ANF ultra</label>
                             </div>
                             <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="prestdRadio" value="ultra" onclick="radioCheck('prestdRadio','anf_pre_std')">
-                              <label class="form-check-label" for="prestdRadio">ANF Premium + Standard</label>
+                              <label class="form-check-label" for="prestdRadio">ANF premium + standard</label>
                             </div>
                             <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="preultRadio" value="ultra" onclick="radioCheck('preultRadio','anf_pre_ult')">
-                              <label class="form-check-label" for="preultRadio">ANF Ultra + Premium</label>
+                              <label class="form-check-label" for="preultRadio">ANF ultra + premium</label>
                             </div>
                           </center></td>
                         </tr>
@@ -1038,8 +1038,13 @@ Developers: Vedant Sethia (vedant.sethia@netapp.com), Dhruv Tyagi (dhruv.tyagi@n
                 <small class="text-muted"><b>Note</b>: Estimator is for estimation purposes only. Contact <b>Azure CSA's</b> to learn more about optimizing the deployment.</small>
             </div>
         </div>
-        <div class="text-right mr-5">
-            <small class="text-muted">&copy;Copyright 2022, <a href="https://www.netapp.com">NetApp Inc.(c)</a></small>
+        <div class="row">
+          <div class="col text-left ml-5">
+              <small class="text-muted">NetApp Solutions Engineering Team - <a href="mailto:vedant.sethia@netapp.com;dhruv.tyagi@netapp.com">Send feedback</a></small>
+          </div>
+          <div class="col text-right mr-5">
+              <small class="text-muted">&copy;Copyright 2022, <a href="">NetApp Inc.(c)</a></small>
+          </div>
         </div>
     </div>
 
