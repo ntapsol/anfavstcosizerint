@@ -348,13 +348,13 @@
 
              document.getElementById("avs1_profile").innerText = "AVS-vSAN only - " + profile;
              //document.getElementById("avs2_profile").innerText = "AVS-vSAN with additional capacity";
-             document.getElementById("avs3_profile").innerText = "AVS-vSAN with ANF premium vol";
-             document.getElementById("avs4_profile").innerText = "AVS-vSAN with ANF premium/standard vol (perf optimized)";
-             document.getElementById("avs5_profile").innerText = "AVS-vSAN with ANF standard vol pilot light cluster";
-             document.getElementById("avs6_profile").innerText = "AVS-vSAN with ANF standard vol zero host footprint";
-             document.getElementById("avs7_profile").innerText = "AVS-vSAN with ANF standard vol";
-             document.getElementById("avs8_profile").innerText = "AVS-vSAN with ANF ultra vol";
-             document.getElementById("avs9_profile").innerText = "AVS-vSAN with ANF ultra/premium vol (Perf optimized)";
+             document.getElementById("avs3_profile").innerText = "AVS-vSAN with ANF premium tier";
+             document.getElementById("avs4_profile").innerText = "AVS-vSAN with ANF premium/standard tier (perf optimized)";
+             document.getElementById("avs5_profile").innerText = "AVS-vSAN with ANF standard tier pilot light cluster";
+             document.getElementById("avs6_profile").innerText = "AVS-vSAN with ANF standard tier zero host footprint";
+             document.getElementById("avs7_profile").innerText = "AVS-vSAN with ANF standard tier";
+             document.getElementById("avs8_profile").innerText = "AVS-vSAN with ANF ultra tier";
+             document.getElementById("avs9_profile").innerText = "AVS-vSAN with ANF ultra/premium tier (Perf optimized)";
 
              //document.getElementById("avs1_tcoavs").innerText = "$" + numberWithCommas(Math.round(tcooneyearavs1));
              document.getElementById("avs2_tcoavs").innerText = "$" + numberWithCommas(Math.round(tcooneyearavs2));
@@ -525,7 +525,7 @@
          <div class="card ml-5 mr-5">
             <div class="card-header">
                <div class="h5"><img src="anficon.png" class="float-left" height="40"></div>
-               <div class="float-left"><span class="h5">&nbsp&nbspAzure NetApp Files datastore TCO Estimator</span></div>
+               <div class="float-left"><span class="h5">&nbsp&nbspAzure NetApp Files datastore TCO Estimator </span><sup class="text-muted">(v1)</sup></div>
             </div>
             <div class="card-body">
                <div class="h5">Sizer Input</div>
@@ -981,7 +981,7 @@
             <div class="card-footer">
                <small class="text-muted"><b>Source</b>: <a href="https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels">Service Levels</a>, <a href="https://azure.microsoft.com/en-us/pricing/details/netapp/">Pricing</a>, <a href="https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-resource-limits">Resource Limits</a>
                </small><br>
-               <small class="text-muted"><b>Note</b>: Estimator is for estimation purposes only. Contact <b>Azure CSA's</b> to learn more about optimizing the deployment.</small>
+               <small class="text-muted"><b>Notes</b>: <ul><li>This calculator is based on storage capacity only. </li><li>Estimator is for estimation purposes only. Contact <b>Azure CSA's</b> to learn more about optimizing the deployment.</li></small>
             </div>
          </div>
          <div class="row mb-3">
