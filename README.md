@@ -1,5 +1,5 @@
 # anfavstcosizerint
-TCO Calculator for NetApp ANF with AVS (INTERNAL)
+TCO Calculator for NetApp ANF with AVS
 
 ## License
 By accessing, downloading, installing or using the content in this repository, you agree the terms of the License laid out in License file.

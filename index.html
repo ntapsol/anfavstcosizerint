@@ -45,6 +45,7 @@
              vramvm = parseInt(document.getElementById("vramvm").value);
              utilstoragevm = parseInt(document.getElementById("utilstoragevm").value);
              storagepolicy = parseInt(document.getElementById("storagepolicy").value);
+             dedupcomp = parseFloat(document.getElementById("dedupcomp").value);
              slackspace = parseInt(document.getElementById("slackspace").value);
              ondiskformat = parseInt(document.getElementById("ondiskformat").value);
              addstrgc = parseInt(document.getElementById("addstrgc").value);
@@ -85,8 +86,12 @@
              rawcap = 1900 * 8 * ondiskformat / 100;
              usablecapwithoutslack = rawcap * (100 - slackspace) / 100;
              storagepolicycalc = 100 - storagepolicy;
-             usablecap = (usablecapwithoutslack * storagepolicycalc / 100)/1024;
-             nohostreq = totcapreq2 / usablecap;
+             usablecap = ((usablecapwithoutslack * storagepolicycalc / 100)/1024)*dedupcomp;
+             if(usablecap == 0){
+               nohostreq = 0;
+             } else{
+               nohostreq = totcapreq2 / usablecap;
+             }
              pervm = addstrvmvsan;
 
              if(nohostreqcpured > hostreqpercalc && nohostreqcpured > nohostreq){
@@ -184,8 +189,8 @@
              premiumdsfin = datastoresize * 6 * 0.32339 * 1024 * 12;
 
              //Premium + Standard DS Combo
-             stddsfin = datastoresize * 4 * 0.16206 * 1024 * 12;
-             premiumdsfin1 = datastoresize * 4 * 0.32339 * 1024 * 12;
+             stddsfin = datastoresize * 6 * 0.16206 * 1024 * 12;
+             premiumdsfin1 = datastoresize * 2 * 0.32339 * 1024 * 12;
 
              //tcooneyearanf4 = stddsfin + premiumdsfin1;
              tcooneyearanf4 = premiumdsfin1 + stddsfin;
@@ -525,7 +530,7 @@
          <div class="card ml-5 mr-5">
             <div class="card-header">
                <div class="h5"><img src="anficon.png" class="float-left" height="40"></div>
-               <div class="float-left"><span class="h5">&nbsp&nbspAzure NetApp Files datastore TCO Estimator </span><sup class="text-muted">(v1)</sup></div>
+               <div class="float-left"><span class="h5">&nbsp&nbspAzure NetApp Files Datastore TCO Estimator </span><sup class="text-muted">(v1)</sup></div>
             </div>
             <div class="card-body">
                <div class="h5">Sizer Input</div>
@@ -533,16 +538,16 @@
                <div class="row">
                   <div class="col input-group mb-3">
                      <div class="input-group-prepend">
-                        <span class="my-1 input-group-text required-field">Total VMs</span>
+                        <span class="my-1 input-group-text required-field" style="color:#000">Total VMs</span>
                      </div>
-                     <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" value="400" aria-label="Total VMs" aria-describedby="Volume Size" id="vmcount" required></input>
+                     <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" value="400" aria-label="Total VMs" aria-describedby="Volume Size" id="vmcount" required></input>
                   </div>
                   <!-- <small id="volumewarning" class="form-text text-muted">Minimum volume size is 100GiB. Maximum volume size is 100TiB.</small> -->
                   <div class="col input-group mb-3">
                      <div class="input-group-prepend">
-                        <span class="my-1 input-group-text required-field">vCPU/pCore</span>
+                        <span class="my-1 input-group-text required-field" style="color:#000">vCPU/pCore</span>
                      </div>
-                     <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" value="3" aria-label="vCPU/pCore" aria-describedby="vVCPU/pCore" id="vcpupcore" required></input>
+                     <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" value="3" aria-label="vCPU/pCore" aria-describedby="vVCPU/pCore" id="vcpupcore" required></input>
                   </div>
                </div>
                <div class="row mb-3">
@@ -550,20 +555,20 @@
                      <small id="volumewarning" class="form-text text-muted">CPU</small>
                      <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                           <span class="my-1 input-group-text required-field">vCPUs/VM</span>
+                           <span class="my-1 input-group-text required-field" style="color:#000">vCPUs/VM</span>
                         </div>
-                        <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" value="8" aria-label="vCPUs/VM" aria-describedby="vCPUs/VM" id="vcpuvm" required></input>
+                        <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" value="8" aria-label="vCPUs/VM" aria-describedby="vCPUs/VM" id="vcpuvm" required></input>
                      </div>
                   </div>
                   <div class="col">
                      <small id="tputwarning" class="form-text text-muted">Memory</small>
                      <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                           <span class="my-1 input-group-text required-field">vRAM/VM</span>
+                           <span class="my-1 input-group-text required-field" style="color:#000">vRAM/VM</span>
                         </div>
-                        <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" value="12" aria-label="vRAM/VM" aria-describedby="vRAM/VM" id="vramvm" required></input>
+                        <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" value="12" aria-label="vRAM/VM" aria-describedby="vRAM/VM" id="vramvm" required></input>
                         <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
-                           <label class="btn btn-primary my-1">GiB</label>
+                           <label class="btn btn-primary my-1">GB</label>
                         </div>
                      </div>
                   </div>
@@ -571,11 +576,11 @@
                      <small id="tputwarning" class="form-text text-muted">Storage</small>
                      <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                           <span class="my-1 input-group-text required-field">Utilized Storage/VM</span>
+                           <span class="my-1 input-group-text required-field" style="color:#000">Utilized Storage/VM</span>
                         </div>
-                        <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" value="300" aria-label="Utilized Storage/VM" aria-describedby="Utilized Storage/VM" id="utilstoragevm" required></input>
+                        <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" value="300" aria-label="Utilized Storage/VM" aria-describedby="Utilized Storage/VM" id="utilstoragevm" required></input>
                         <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
-                           <label class="btn btn-primary my-1">GiB</label>
+                           <label class="btn btn-primary my-1">GB</label>
                         </div>
                      </div>
                   </div>
@@ -584,9 +589,9 @@
                   <!-- <small id="tputwarning" class="form-text text-muted">Storage</small> -->
                   <div class="col input-group mb-3">
                      <div class="input-group-prepend">
-                        <span class="my-1 input-group-text">Slack Space <button type="button" class="m-0 ml-1 btn p-0 bg-transparent" style="line-height:normal" data-toggle="tooltip" data-html="true" title="Free space set aside for system operations"><svg xmlns="http://www.w3.org/2000/svg" width=16 height=16 viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg></button></span>
+                        <span class="my-1 input-group-text" style="color:#000">Slack Space <button type="button" class="m-0 ml-1 btn p-0 bg-transparent" style="line-height:normal" data-toggle="tooltip" data-html="true" title="Free space set aside for system operations"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></button></span>
                      </div>
-                     <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" min="0" max="100" value="25" aria-label="Slack Space" aria-describedby="Slack Space" id="slackspace"></input>
+                     <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" min="0" max="100" value="25" aria-label="Slack Space" aria-describedby="Slack Space" id="slackspace"></input>
                      <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-primary my-1">%</label>
                      </div>
@@ -594,23 +599,35 @@
                   <!-- <small id="tputwarning" class="form-text text-muted">Storage</small> -->
                   <div class="col input-group mb-3">
                      <div class="input-group-prepend">
-                        <span class="my-1 input-group-text">On-disk Format <button type="button" class="m-0 ml-1 btn p-0 bg-transparent" style="line-height:normal" data-toggle="tooltip" data-html="true" title="Overhead requirement of the vSAN on-disk formats"><svg xmlns="http://www.w3.org/2000/svg" width=16 height=16 viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg></button></span>
+                        <span class="my-1 input-group-text" style="color:#000">On-disk Format <button type="button" class="m-0 ml-1 btn p-0 bg-transparent" style="line-height:normal" data-toggle="tooltip" data-html="true" title="Overhead requirement of the vSAN on-disk formats"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></button></span>
                      </div>
-                     <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" min="0" max="100" value="95" aria-label="On-disk Format" aria-describedby="On-disk Formats" id="ondiskformat"></input>
+                     <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" min="0" max="100" value="90" aria-label="On-disk Format" aria-describedby="On-disk Formats" id="ondiskformat"></input>
                      <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-primary my-1">%</label>
                      </div>
                   </div>
+
                   <!-- <small id="volumewarning" class="form-text text-muted">Policy</small> -->
                   <div class="col input-group mb-3">
                      <div class="input-group-prepend">
-                        <span class="my-1 input-group-text">Storage Policy<button type="button" class="m-0 ml-1 btn p-0 bg-transparent" style="line-height:normal" data-toggle="tooltip" data-html="true" title="Storage policies for the virtual machines <br><a href='https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.vsan-planning.doc/GUID-581D2D5C-A88F-4318-A8B3-5A5F343F1247.html'><u>Click here</u></a>"><svg xmlns="http://www.w3.org/2000/svg" width=16 height=16 viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg></button></span>
+                        <span class="my-1 input-group-text" style="color:#000">Storage Policy<button type="button" class="m-0 ml-1 btn p-0 bg-transparent" style="line-height:normal" data-toggle="tooltip" data-html="true" title="Storage policies for the virtual machines <br><a href='https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.vsan-planning.doc/GUID-581D2D5C-A88F-4318-A8B3-5A5F343F1247.html'><u>Read more about Planning Capacity</u></a><br><a href='https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.virtualsan.doc/GUID-AD408FA8-5898-4541-9F82-FE72E6CD6227.html'><u>Read more about RAID 5/6 Eras</u></a>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></button></span>
                      </div>
-                     <select oninput="getResults()" class="form-select my-1 mr-sm-1 form-control" id="storagepolicy">
-                        <option value="0">RAID 0 (0%)</option>
-                        <option value="50">RAID 1 (50%)</option>
-                        <option value="25">RAID 5 (25%)</option>
-                        <option value="33" selected>RAID 6 (33%)</option>
+                     <select oninput="getResults()" class="form-select my-1  form-control" id="storagepolicy">
+                        <option value="0">RAID 0-0%</option>
+                        <option value="50">RAID 1-50%</option>
+                        <option value="25">RAID 5/6 (EC) FTT1-25%</option>
+                        <option value="33" selected>RAID 5/6 (EC) FTT2-33%</option>
+                     </select>
+                  </div>
+                  <!-- <small id="volumewarning" class="form-text text-muted">Policy</small> -->
+                  <div class="col input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="my-1 input-group-text" style="color:#000">Dedup/Compression<button type="button" class="m-0 ml-1 btn p-0 bg-transparent" style="line-height:normal" data-toggle="tooltip" data-html="true" title="Dedupe and Compression savings <br><a href='https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.virtualsan.doc/GUID-2285B446-46BF-429C-A1E7-BEE276ED40F7.html'><u>Click here</u></a>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></button></span>
+                     </div>
+                     <select oninput="getResults()" class="form-select my-1  form-control" id="dedupcomp">
+                        <option value="1">1</option>
+                        <option value="1.2" selected>1.2</option>
+                        <option value="1.5">1.5</option>
                      </select>
                   </div>
                </div>
@@ -628,9 +645,9 @@
                         <!-- <small id="tputwarning" class="form-text text-muted">Storage</small> -->
                         <div class="col input-group mb-3">
                            <div class="input-group-prepend">
-                              <span class="my-1 input-group-text">Guest Connected</span>
+                              <span class="my-1 input-group-text" style="color:#000">Guest Connected</span>
                            </div>
-                           <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" value="0" aria-label="Guest Connected" aria-describedby="Guest Connected" id="addstrgc"></input>
+                           <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" value="0" aria-label="Guest Connected" aria-describedby="Guest Connected" id="addstrgc"></input>
                            <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
                               <label class="btn btn-primary my-1">TB</label>
                            </div>
@@ -638,9 +655,9 @@
                         <!-- <small id="tputwarning" class="form-text text-muted">Storage</small> -->
                         <div class="col input-group mb-3">
                            <div class="input-group-prepend">
-                              <span class="my-1 input-group-text">File Services</span>
+                              <span class="my-1 input-group-text" style="color:#000">File Services</span>
                            </div>
-                           <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" value="0" aria-label="File Services" aria-describedby="File Services" id="addstrfs"></input>
+                           <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" value="0" aria-label="File Services" aria-describedby="File Services" id="addstrfs"></input>
                            <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
                               <label class="btn btn-primary my-1">TB</label>
                            </div>
@@ -648,9 +665,9 @@
                         <!-- <small id="tputwarning" class="form-text text-muted">Storage</small> -->
                         <div class="col input-group mb-3">
                            <div class="input-group-prepend">
-                              <span class="my-1 input-group-text">General Purpose</span>
+                              <span class="my-1 input-group-text" style="color:#000">General Purpose</span>
                            </div>
-                           <input oninput="getResults()" type="number" class="my-1 mr-sm-1 form-control" placeholder="" value="0" aria-label="General Purpose" aria-describedby="General Purpose" id="addstrgp"></input>
+                           <input oninput="getResults()" type="number" class="my-1  form-control" placeholder="" value="0" aria-label="General Purpose" aria-describedby="General Purpose" id="addstrgp"></input>
                            <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
                               <label class="btn btn-primary my-1">TB</label>
                            </div>
