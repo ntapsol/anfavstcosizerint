@@ -83,7 +83,7 @@
              hostreqpercalc = totmemreq / 460.80; //80% of 576
 
              //Driven by Storage
-             rawcap = 1900 * 8 * ondiskformat / 100;
+             rawcap = 1920 * 8 * ondiskformat / 100;
              usablecapwithoutslack = rawcap * (100 - slackspace) / 100;
              storagepolicycalc = 100 - storagepolicy;
              usablecap = ((usablecapwithoutslack * storagepolicycalc / 100)/1024)*dedupcomp;
@@ -404,16 +404,16 @@
              }
 
              //document.getElementById("avs1_tcototal").classList.remove("bg-success", "text-white");
-             document.getElementById("avs2_tcototal").classList.remove("bg-success", "text-white");
-             document.getElementById("avs3_tcototal").classList.remove("bg-success", "text-white");
-             document.getElementById("avs4_tcototal").classList.remove("bg-success", "text-white");
-             document.getElementById("avs5_tcototal").classList.remove("bg-success", "text-white");
-             document.getElementById("avs6_tcototal").classList.remove("bg-success", "text-white");
-             document.getElementById("avs7_tcototal").classList.remove("bg-success", "text-white");
-             document.getElementById("avs8_tcototal").classList.remove("bg-success", "text-white");
-             document.getElementById("avs9_tcototal").classList.remove("bg-success", "text-white");
+             //document.getElementById("avs2_tcototal").classList.remove("bg-success", "text-white");
+             //document.getElementById("avs3_tcototal").classList.remove("bg-success", "text-white");
+             //document.getElementById("avs4_tcototal").classList.remove("bg-success", "text-white");
+             //document.getElementById("avs5_tcototal").classList.remove("bg-success", "text-white");
+             //document.getElementById("avs6_tcototal").classList.remove("bg-success", "text-white");
+             //document.getElementById("avs7_tcototal").classList.remove("bg-success", "text-white");
+             //document.getElementById("avs8_tcototal").classList.remove("bg-success", "text-white");
+             //document.getElementById("avs9_tcototal").classList.remove("bg-success", "text-white");
 
-             document.getElementById(mintcokey).classList.add("bg-success", "text-white");
+             //document.getElementById(mintcokey).classList.add("bg-success", "text-white");
 
              //document.getElementById("avs1_tcototal").innerText = "$" + numberWithCommas(Math.round(tcooneyearavs1));
              document.getElementById("avs2_tcototal").innerText = "$" + numberWithCommas(Math.round(tcooneyearavs2));
