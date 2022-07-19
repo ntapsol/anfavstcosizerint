@@ -1,4 +1,4 @@
-# anfavstcosizerint
+# anfavstco
 TCO Calculator for NetApp ANF with AVS
 
 ## License
